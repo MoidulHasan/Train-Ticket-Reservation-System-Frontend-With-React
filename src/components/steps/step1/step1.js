@@ -14,7 +14,7 @@ const Step1 = () => {
             <div className='row d-flex justify-content-center'>
                 <div class="col-8 form-group">
                     <label>Name</label>
-                    <input type="text" class="form-control" />
+                    <input type="text" class="form-control shadow-none" />
                 </div>
             </div>
             <div class="row d-flex justify-content-center mt-3">
