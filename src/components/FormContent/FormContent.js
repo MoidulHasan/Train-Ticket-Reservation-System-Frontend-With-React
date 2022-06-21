@@ -12,8 +12,8 @@ const FormContent = ({ children }) => {
     return (
         <div className='contentContainer d-flex align-items-center justify-content-center'>
             <div className='formDetails'>
-                <div className='form-inputs'>
-
+                <div className='form-inputs d-flex justify-content-between flex-column'>
+                    {children}
                 </div>
             </div>
         </div>
