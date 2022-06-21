@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+/**
+ * Title: Multipart Form App
+ * Description: This module provide the app for multipart form
+ * Author: Moidul Hasan Khan
+ * Date: 21/06/2022
+ */
 
+// Dependencies
+import './App.css';
+import Form from './view/form/form';
+
+// App Functional component
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Form />
   );
 }
 
+// Export module
 export default App;
