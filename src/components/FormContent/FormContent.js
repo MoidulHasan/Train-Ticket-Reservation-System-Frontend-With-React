@@ -8,7 +8,7 @@
 // Dependencies
 import React from 'react';
 import './FormContent.css';
-const FormContent = ({ children, handleSubmit, formSubmitHandler, Name }) => {
+const FormContent = ({ children, handleSubmit, formSubmitHandler }) => {
     return (
         <form onSubmit={handleSubmit(formSubmitHandler)} className='contentContainer d-flex align-items-center justify-content-center'>
             <div className='formDetails'>

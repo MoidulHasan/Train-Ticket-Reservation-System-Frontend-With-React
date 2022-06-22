@@ -20,26 +20,34 @@ import Step6 from "../components/steps/step6/step6";
 // module scafolding
 const utils = {};
 
-// Return error based on step and fileds
-utils.errorHandler = (step, watch) => {
+// return error message based on step number
+const errorMessage = (step, watch) => {
     let error;
 
-    // vaidate fileds for step 1
     if (step === 1 && watch("Name") === '') {
-        error = <h5 className='text-danger text-center'> <i class="fa-solid fa-triangle-exclamation" />  <span>Name is required</span> </h5>;
+        error = ' Name is required';
     }
-    else if (step === 2 && watch("From") === watch("To")) {
-        error = <h5 className='text-danger text-center'> <i class="fa-solid fa-triangle-exclamation" />  <span> Both stations can not be identical.</span> </h5>;
+    else if (step === 2) {
+        if (watch("From") === watch("To"))
+            error = ' Both stations can not be identical.';
+        else if (watch("From") === '' || watch("To") === '')
+            error = ' Both stations can not be identical.';
     }
     else if (step === 3 && (watch("Date") === "" || watch("Time") === "")) {
-        error = <h5 className='text-danger text-center'> <i class="fa-solid fa-triangle-exclamation" />  <span> Date and time is required.</span> </h5>;
+        error = ' Date and time is required.';
     }
     else if (step === 5 && watch("Note") === '') {
-        error = <h5 className='text-danger text-center'> <i class="fa-solid fa-triangle-exclamation" />  <span> Note is required.</span> </h5>;
+        error = ' Note is required.';
     }
     else {
-        error = "";
+        error = null;
     }
+    return error;
+}
+
+// Return error based on step and fileds
+utils.errorHandler = (step, watch) => {
+    let error = errorMessage(step, watch) !== null ? <h5 className='text-danger text-center'> <i class="fa-solid fa-triangle-exclamation" />  <span>{errorMessage(step, watch)}</span> </h5> : "";
     return error;
 };
 

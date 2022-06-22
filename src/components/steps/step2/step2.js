@@ -1,5 +1,5 @@
 /**
- * Title: Multipart Form Step 1
+ * Title: Multipart Form Step 2
  * Description: This module provide the multipart form's step 2's content
  * Author: Moidul Hasan Khan
  * Date: 22/06/2022
@@ -16,6 +16,7 @@ const Step2 = ({ register, formData }) => {
                 <div class="col-8 form-group">
                     <label>From</label>
                     <select class="form-select" {...register("From")}>
+                        <option value={''}></option>
                         {formData.From === "東京" ? <option selected value={'東京'}>東京</option> : <option value={'東京'}>東京</option>}
                         {formData.From === "横浜" ? <option selected value={'横浜'}>横浜</option> : <option value={'横浜'}>横浜</option>}
                         {formData.From === "名古屋" ? <option selected value={'名古屋'}>名古屋</option> : <option value={'名古屋'}>名古屋</option>}
@@ -28,6 +29,7 @@ const Step2 = ({ register, formData }) => {
                 <div class="col-8 form-group">
                     <label>To</label>
                     <select class="form-select" {...register("To")}>
+                        <option value={''}></option>
                         {formData.To === "東京" ? <option selected value={'東京'}>東京</option> : <option value={'東京'}>東京</option>}
                         {formData.To === "横浜" ? <option selected value={'横浜'}>横浜</option> : <option value={'横浜'}>横浜</option>}
                         {formData.To === "名古屋" ? <option selected value={'名古屋'}>名古屋</option> : <option value={'名古屋'}>名古屋</option>}

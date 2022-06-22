@@ -13,6 +13,7 @@ const Step1 = ({ register, formData }) => {
     console.log("From Data form step 1: ", formData)
 
     const Male = formData.Gender === 'Male' ? true : false;
+    const feMale = formData.Gender === 'Female' ? true : false;
     return (
         <div className='mt-5'>
             <div className='row d-flex justify-content-center'>
@@ -37,8 +38,8 @@ const Step1 = ({ register, formData }) => {
                             </label>
                         </div>
                         <div class="form-check">
-                            {!Male && <input class="form-check-input" type="radio" checked name="Gender" value="Female" {...register("Gender")} />}
-                            {Male && <input class="form-check-input" type="radio" name="Gender" value="Female" {...register("Gender")} />}
+                            {feMale && <input class="form-check-input" type="radio" checked name="Gender" value="Female" {...register("Gender")} />}
+                            {!feMale && <input class="form-check-input" type="radio" name="Gender" value="Female" {...register("Gender")} />}
 
                             <label class="form-check-label" >
                                 Female

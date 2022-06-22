@@ -46,10 +46,6 @@ const Form = () => {
         setStepChange(false);
     }, 1000);
 
-    // console.log(step);
-
-    // console.log("Form Data: ", formData)
-
 
 
     // get form data from local storage if it is saved and set it to formData state
