@@ -11,31 +11,27 @@ import FormContent from '../../components/FormContent/FormContent';
 import Header from '../../components/header/header';
 import './formStyles.css';
 import { useForm } from "react-hook-form";
-import Step1 from '../../components/steps/step1/step1';
 import PageNavigator from '../../components/pageNavigator/pageNavigator';
 import Spinner from '../../components/spinner/spinner';
+import utils from '../../utils/utils';
+
+
+
 const Form = () => {
-    // declare state
+    // declare states
     const [step, setStep] = useState(1);
     const [stepChange, setStepChange] = useState(false);
+    const [formData, setFormData] = useState({});
 
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const onSubmit = data => console.log(data);
+    const formSubmitHandler = data => console.log(data);
 
-    // page navigation next button click handler
-    const nextClickHandler = (step) => {
-        if (step < 5)
-            setStep((step) => step + 1);
-        console.log(step);
-    }
+    // get current step based on step number
+    const { currentStep, decrypt } = utils;
+    const stepNow = currentStep(step, register, formData);
 
-    // page navigation Back button click handler
-    const backClickHandler = (step) => {
-        if (step > 1)
-            setStep((step) => step - 1);
-        console.log(step);
-    }
+
 
     // change stepChange state value
     const changeStepStatus = () => {
@@ -50,23 +46,28 @@ const Form = () => {
         setStepChange(false);
     }, 1000);
 
+    // console.log(step);
 
-    // determine current step based on step state
-    let currentStep;
-    switch (step) {
-        case 1:
-            currentStep = <Step1 />;
-            break;
+    console.log("Form Data: ", formData)
 
-        default:
-    }
+
+
+    // get form data from local storage if it is saved and set it to formData state
+    useEffect(() => {
+        const formData = JSON.parse(decrypt(localStorage.getItem('formData')));
+        console.log("local form data1: ", formData);
+        if (formData) {
+            setFormData(formData);
+        }
+    }, []);
+
 
     return (
         <div className='form'>
             <Header />
-            <FormContent >
-                {stepChange ? <Spinner /> : currentStep}
-                <PageNavigator step={step} nextClickHandler={nextClickHandler} backClickHandler={backClickHandler} />
+            <FormContent handleSubmit={handleSubmit} formSubmitHandler={formSubmitHandler} >
+                {stepChange ? <Spinner /> : stepNow}
+                <PageNavigator step={step} setStep={setStep} watch={watch} formData={formData} setFormData={setFormData} />
             </FormContent>
         </div>
     );

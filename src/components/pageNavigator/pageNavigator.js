@@ -6,16 +6,57 @@
  */
 
 // Dependencies
-import React from 'react';
+import React, { useState } from 'react';
+import utils from '../../utils/utils';
 import './pageNavigatorStyles.css'
 
 
-const PageNavigator = ({ step, nextClickHandler, backClickHandler }) => {
+const PageNavigator = ({ step, setStep, watch, formData, setFormData }) => {
+    const { errorHandler, updateData, saveData } = utils;
+
+    const [error, setError] = useState();
+
+    // page navigation next button click handler
+    const nextClickHandler = (step) => {
+        if (step < 5) {
+            // check error
+            const err = errorHandler(step, watch);
+            if (err === '') {
+                // get updated from data and update state
+                const updatedData = updateData(watch, step, formData);
+                setFormData(() => updatedData);
+
+                // save data to local storage
+                saveData(formData);
+
+                // set empty error
+                setError(err);
+
+                // increase step number
+                setStep((step) => step + 1);
+            }
+            else {
+                // set error
+                setError(err);
+            }
+        }
+    }
+
+    // page navigation Back button click handler
+    const backClickHandler = (step) => {
+        if (step > 1) setStep((step) => step - 1);
+    }
+
+
     return (
-        <div className={`d-flex ${step > 1 ? 'justify-content-between' : 'justify-content-end'} navigator`}>
-            {step > 1 && <button type="button" class="btn btn-secondary" onClick={() => backClickHandler(step)}>Back</button>}
-            <button type="button" class="btn btn-primary" onClick={() => nextClickHandler(step)}>Next</button>
-        </div>
+        <div className='navigator'>
+            {error}
+            <div className={`d-flex ${step > 1 ? 'justify-content-between' : 'justify-content-end'} `}>
+                {step > 1 && <button type="button" class="btn btn-secondary" onClick={() => backClickHandler(step)}>Back</button>}
+                <button type="button" class="btn btn-primary" onClick={() => nextClickHandler(step)}>Next</button>
+            </div>
+        </div >
+
     );
 };
 

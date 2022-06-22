@@ -8,13 +8,17 @@
 // Dependencies
 import React from 'react';
 
-const Step1 = () => {
+const Step1 = ({ register, formData }) => {
+
+    console.log("From Data form step 1: ", formData)
+
+    const Male = formData.Gender === 'Male' ? true : false;
     return (
         <div className='mt-5'>
             <div className='row d-flex justify-content-center'>
                 <div class="col-8 form-group">
                     <label>Name</label>
-                    <input type="text" class="form-control shadow-none" />
+                    <input type="text" class="form-control shadow-none" autocomplete="off" name='Name' {...register("Name", { required: true })} value={formData.Name !== '' ? formData.Name : ''} />
                 </div>
             </div>
             <div class="row d-flex justify-content-center mt-3">
@@ -22,15 +26,22 @@ const Step1 = () => {
                     <label>Gender</label>
                     <div className='ms-5'>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" />
-                            <label class="form-check-label" for="gridRadios1">
-                                First radio
+                            {Male && <input class="form-check-input" type="radio" checked name="Gender" value="Male" {...register("Gender")}
+                            />}
+
+                            {!Male && <input class="form-check-input" type="radio" name="Gender" value="Male" {...register("Gender")}
+                            />}
+
+                            <label class="form-check-label" >
+                                Male
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2" />
-                            <label class="form-check-label" for="gridRadios2">
-                                Second radio
+                            {!Male && <input class="form-check-input" type="radio" checked name="Gender" value="Female" {...register("Gender")} />}
+                            {Male && <input class="form-check-input" type="radio" name="Gender" value="Female" {...register("Gender")} />}
+
+                            <label class="form-check-label" >
+                                Female
                             </label>
                         </div>
                     </div>
