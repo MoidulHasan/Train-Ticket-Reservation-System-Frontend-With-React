@@ -18,7 +18,7 @@ const PageNavigator = ({ step, setStep, watch, formData, setFormData }) => {
 
     // page navigation next button click handler
     const nextClickHandler = (step) => {
-        if (step < 4 || step > 4) {
+        if ((step < 4 || step > 4) && step < 6) {
             // check error
             const err = errorHandler(step, watch);
             if (err === '') {
@@ -53,6 +53,7 @@ const PageNavigator = ({ step, setStep, watch, formData, setFormData }) => {
             // increase step number
             setStep((step) => step + 1);
         }
+
         // else if(step === 5 ){
 
         // }
