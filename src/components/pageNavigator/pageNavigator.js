@@ -18,12 +18,13 @@ const PageNavigator = ({ step, setStep, watch, formData, setFormData }) => {
 
     // page navigation next button click handler
     const nextClickHandler = (step) => {
-        if (step < 5) {
+        if (step < 4 || step > 4) {
             // check error
             const err = errorHandler(step, watch);
             if (err === '') {
                 // get updated from data and update state
                 const updatedData = updateData(watch, step, formData);
+                // console.log(updatedData);
                 setFormData(() => updatedData);
 
                 // save data to local storage
@@ -40,6 +41,21 @@ const PageNavigator = ({ step, setStep, watch, formData, setFormData }) => {
                 setError(err);
             }
         }
+        else if (step === 4) {
+            // check error
+            const err = errorHandler(step, watch);
+            // save data to local storage
+            saveData(formData);
+
+            // set empty error
+            setError(err);
+
+            // increase step number
+            setStep((step) => step + 1);
+        }
+        // else if(step === 5 ){
+
+        // }
     }
 
     // page navigation Back button click handler

@@ -29,7 +29,7 @@ const Form = () => {
 
     // get current step based on step number
     const { currentStep, decrypt } = utils;
-    const stepNow = currentStep(step, register, formData);
+    const stepNow = currentStep(step, register, formData, setFormData, watch);
 
 
 
@@ -48,14 +48,14 @@ const Form = () => {
 
     // console.log(step);
 
-    console.log("Form Data: ", formData)
+    // console.log("Form Data: ", formData)
 
 
 
     // get form data from local storage if it is saved and set it to formData state
     useEffect(() => {
         const formData = JSON.parse(decrypt(localStorage.getItem('formData')));
-        console.log("local form data1: ", formData);
+        // console.log("local form data1: ", formData);
         if (formData) {
             setFormData(formData);
         }
