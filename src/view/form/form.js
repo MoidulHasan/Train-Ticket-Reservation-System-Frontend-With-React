@@ -24,7 +24,7 @@ const Form = () => {
     const [formData, setFormData] = useState({});
 
 
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { register, handleSubmit, watch } = useForm();
     const formSubmitHandler = data => console.log(data);
 
     // get current step based on step number
@@ -54,11 +54,14 @@ const Form = () => {
 
     // get form data from local storage if it is saved and set it to formData state
     useEffect(() => {
-        const formData = JSON.parse(decrypt(localStorage.getItem('formData')));
-        // console.log("local form data1: ", formData);
-        if (formData) {
-            setFormData(formData);
+        if (localStorage.getItem('formData')) {
+            const formData = JSON.parse(decrypt(localStorage.getItem('formData')));
+            // console.log("local form data1: ", formData);
+            if (formData) {
+                setFormData(formData);
+            }
         }
+
     }, []);
 
 

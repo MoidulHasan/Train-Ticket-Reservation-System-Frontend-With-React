@@ -7,23 +7,30 @@
 
 // Dependencies
 import React from 'react';
+import utils from '../../../utils/utils';
 
 const Step4 = ({ register, formData, setFormData, watch }) => {
+
+    const { randomNumber, commaSeparator } = utils;
+
 
     if (!formData.Price) {
         let newFormData = formData;
 
-        let price = Math.floor(Math.random() * 10000000000);
-        price = price / 100;
+        // let price = Math.floor(Math.random() * 10000000000);
+        // price = price / 100;
 
-        newFormData.Price = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        // newFormData.Price = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
-        if (newFormData.Price.split('.')[1].length === 1) {
-            console.log(newFormData.Price);
-            newFormData.Price += '1';
-            console.log(newFormData.Price);
-        }
-        console.log(newFormData);
+        // if (newFormData.Price.split('.')[1].length === 1) {
+        //     console.log(newFormData.Price);
+        //     newFormData.Price += '1';
+        //     console.log(newFormData.Price);
+        // }
+        // console.log(newFormData);
+
+        newFormData.Price = randomNumber()
+
         setFormData(() => newFormData);
     }
 
@@ -34,7 +41,7 @@ const Step4 = ({ register, formData, setFormData, watch }) => {
             <div className='row d-flex justify-content-center'>
                 <div class="col-6 border border-1 d-flex justify-content-between">
                     <span>৳</span>
-                    <span>{formData.Price}</span>
+                    <span>{commaSeparator(formData.Price)}</span>
                     <input className='d-none' name="Price"  {...register("Price", { value: formData.Price })} />
                 </div>
             </div>

@@ -69,7 +69,7 @@ const PageNavigator = ({ step, setStep, watch, formData, setFormData }) => {
             {error}
             <div className={`d-flex ${step > 1 ? 'justify-content-between' : 'justify-content-end'} `}>
                 {step > 1 && <button type="button" class="btn btn-secondary" onClick={() => backClickHandler(step)}>Back</button>}
-                <button type="button" class="btn btn-primary" onClick={() => nextClickHandler(step)}>Next</button>
+                <button type="button" class="btn btn-primary" onClick={() => nextClickHandler(step)}>{step === 6 ? "Submit" : "Next"}</button>
             </div>
         </div >
 

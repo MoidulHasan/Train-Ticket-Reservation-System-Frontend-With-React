@@ -11,7 +11,7 @@ import React from 'react';
 const Spinner = () => {
     return (
         <div className='d-flex align-items-center justify-content-center h-100'>
-            <div class="spinner-border text-primary " role="status" />
+            <div className="spinner-border text-primary " role="status" />
             <h3 className='ms-3'>Page Loading...</h3>
         </div>
     );

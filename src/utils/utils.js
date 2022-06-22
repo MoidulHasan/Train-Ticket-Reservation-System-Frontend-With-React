@@ -12,6 +12,7 @@ import Step2 from "../components/steps/step2/step2";
 import Step3 from "../components/steps/step3/step3";
 import Step4 from "../components/steps/step4/step4";
 import Step5 from "../components/steps/step5/step5";
+import Step6 from "../components/steps/step6/step6";
 
 
 
@@ -62,7 +63,9 @@ utils.currentStep = (step, register, formData, setFormData, watch) => {
         case 5:
             currentStep = <Step5 register={register} formData={formData} watch={watch} setFormData={setFormData} />;
             break;
-
+        case 6:
+            currentStep = <Step6 formData={formData} />;
+            break;
         default:
     }
 
@@ -127,6 +130,21 @@ utils.getData = () => {
     return typeof formData === 'object' ? formData : null;
 }
 
+
+//  8 digit random number generator
+utils.randomNumber = () => {
+    let price = Math.floor(Math.random() * 10000000000);
+    price = price / 100;
+    if (price.toString().split('.')[1].length === 1) {
+        price += '1';
+    }
+    return price;
+}
+
+// comma separator
+utils.commaSeparator = (number) => {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 
 
 export default utils;
